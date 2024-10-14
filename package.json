@@ -1,0 +1,27 @@
+{
+  "name": "basePostgrado",
+  "version": "1.4.0",
+  "base_version": "1.3.0",
+  "description": "Servicios Base Postgrado",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev": "SET NODE_ENV=development & nodemon index.js",
+    "prod": "SET NODE_ENV=production & nodemon index.js",
+    "dev-unix": "NODE_ENV=development nodemon index.js",
+    "prod-unix": "NODE_ENV=production nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DISICO",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "dateformat": "^2.0.0",
+    "method-override": "^2.3.7",
+    "mssql": "^3.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
