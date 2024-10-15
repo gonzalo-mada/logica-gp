@@ -34,7 +34,7 @@ let updateTiempoAcreditacion = async (request, response) => {
         let msg = validador.validarParametro(args, 'numero', 'codigoTiempoAcred', true);
         msg += validador.validarParametro(args, 'cadena', 'fechaInicio', true);
         msg += validador.validarParametro(args, 'cadena', 'fechaTermino', true);
-        msg += validador.validarParametro(args, 'numero', 'cantidad', true);
+        msg += validador.validarParametro(args, 'numero', 'cantidad', false);
 
         if (msg == '') {
             let con = await sql.connect(global.config.ds_postgrado);
@@ -61,7 +61,7 @@ let insertTiempoAcreditacion = async (request, response) => {
         let msg = validador.validarParametro(args, 'numero', 'codigoTiempoAcred', true);
         msg += validador.validarParametro(args, 'cadena', 'fechaInicio', true);
         msg += validador.validarParametro(args, 'cadena', 'fechaTermino', true);
-        msg += validador.validarParametro(args, 'numero', 'cantidad', true);
+        msg += validador.validarParametro(args, 'numero', 'cantidad', false);
 
         if (msg == '') {
             let con = await sql.connect(global.config.ds_postgrado);

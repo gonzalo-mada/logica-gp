@@ -141,6 +141,7 @@ let getEstadosAcreditacion= async (request, response) => {
 
         let listEstadosAcreditacion = result[0].map((a) => {
             return {
+                sigla: a.Sigla,
                 codigoAcred: a.Cod_acreditacion,
                 acreditado: a.Acreditado.trim(),
                 certificado: a.Certificado.trim(),
@@ -170,6 +171,7 @@ let updateEstadoAcreditacion = async (request, response) => {
         msg += validador.validarParametro(args, 'cadena', 'nombreAgAcred', true);
         msg += validador.validarParametro(args, 'cadena', 'nombreAgCert', true);
         msg += validador.validarParametro(args, 'numero', 'codigoTiempoAcred', true);
+        msg += validador.validarParametro(args, 'cadena', 'sigla', true);
 
         if (msg == '') {
             let con = await sql.connect(global.config.ds_postgrado);
@@ -183,6 +185,7 @@ let updateEstadoAcreditacion = async (request, response) => {
                 .input('NOMBRE_AG_ACREDIT', sql.VarChar, args.nombreAgAcred)
                 .input('NOMBRE_AG_CERTIF', sql.VarChar, args.nombreAgCert)
                 .input('COD_TIEMPOACREDIT', sql.Int, args.codigoTiempoAcred)
+                .input('SIGLA', sql.VarChar, args.sigla)
                 .execute('SP_ACTUALIZAR_ACREDITACION');
             con.close();
             response.json(reply.ok(true));
@@ -205,6 +208,7 @@ let insertEstadoAcreditacion = async (request, response) => {
         msg += validador.validarParametro(args, 'cadena', 'nombreAgAcred', true);
         msg += validador.validarParametro(args, 'cadena', 'nombreAgCert', true);
         msg += validador.validarParametro(args, 'numero', 'codigoTiempoAcred', true);
+        msg += validador.validarParametro(args, 'cadena', 'sigla', true);
 
 
         if (msg == '') {
@@ -219,6 +223,7 @@ let insertEstadoAcreditacion = async (request, response) => {
                 .input('NOMBRE_AG_ACREDIT', sql.VarChar, args.nombreAgAcred)
                 .input('NOMBRE_AG_CERTIF', sql.VarChar, args.nombreAgCert)
                 .input('COD_TIEMPOACREDIT', sql.Int, args.codigoTiempoAcred)
+                .input('SIGLA', sql.VarChar, args.sigla)
                 .execute('SP_AGREGAR_ACREDITACION');
             con.close();
             response.json(reply.ok(true));

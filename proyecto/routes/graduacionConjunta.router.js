@@ -10,6 +10,10 @@ router.post('/getGraduacionConjunta_Prog', graduacionConjuntaService.getGraduaci
 router.post('/getGraduacionConjunta_Prog_All', graduacionConjuntaService.getGraduacionConjunta_Prog_All);
 router.post('/insertGraduacionConjunta', graduacionConjuntaService.insertGraduacionConjunta);
 router.post('/insertGraduacionConjunta_Prog', graduacionConjuntaService.insertGraduacionConjunta_Prog);
+router.post('/updateGraduacionConjunta', graduacionConjuntaService.updateGraduacionConjunta);
+router.post('/updateGraduacionConjunta_Prog', graduacionConjuntaService.updateGraduacionConjunta_Prog);
+router.post('/deleteGraduacionConjunta', graduacionConjuntaService.deleteGraduacionConjunta);
+router.post('/deleteGraduacionConjunta_Prog', graduacionConjuntaService.deleteGraduacionConjunta_Prog);
 
 
 
