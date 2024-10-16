@@ -319,7 +319,7 @@ let getPrograma = async (request,response) => {
 let insertPrograma = async (request, response) => {
     try {
         let args = JSON.parse(request.body.arg === undefined ? '{}' : request.body.arg);
-        let msg = validador.validarParametro(args, 'numero', 'Cod_Programa', true);
+        let msg = validador.validarParametro(args, 'numero', 'Cod_Programa', false);
         msg += validador.validarParametro(args, 'numero', 'Centro_costo', true);
         msg += validador.validarParametro(args, 'cadena', 'Nombre_programa', true);
         msg += validador.validarParametro(args, 'numero', 'Tipo_programa', true);
@@ -344,7 +344,7 @@ let insertPrograma = async (request, response) => {
             let con = await sql.connect(global.config.ds_postgrado);
 
             let result = await con.request()
-                .input('COD_PROGRAMA', sql.Int, args.Cod_Programa)
+                // .input('COD_PROGRAMA', sql.Int, args.Cod_Programa)
                 .input('CENTRO_COSTO', sql.Int, args.Centro_costo)
                 .input('NOMBRE_PROGRAMA', sql.VarChar, args.Nombre_programa)
                 .input('TIPO_PROGRAMA', sql.Int, args.Tipo_programa)
@@ -366,7 +366,7 @@ let insertPrograma = async (request, response) => {
                 .input('GRADUACION_CONJUNTA', sql.Int, args.Graduacion_Conjunta)
                 .execute('SP_AGREGAR_PROGRAMA');
             con.close();
-            response.json(reply.ok(true));
+            response.json(reply.ok(result[0]));
         } else {
             response.json(reply.error(msg));
         }
