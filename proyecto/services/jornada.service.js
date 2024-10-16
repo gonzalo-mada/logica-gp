@@ -29,14 +29,14 @@ let getJornadas = async (request, response) => {
 let insertJornada = async (request, response) => {
     try {
         let args = JSON.parse(request.body.arg === undefined ? '{}' : request.body.arg);
-        let msg = validador.validarParametro(args, 'cadena', 'Cod_jornada', true);
+        let msg = validador.validarParametro(args, 'numero', 'Cod_jornada', true);
         msg += validador.validarParametro(args, 'cadena', 'Descripcion_jornada', true);
 
         if (msg == '') {
             let con = await sql.connect(global.config.ds_postgrado);
 
             let result = await con.request()
-                .input('COD_JORNADA', sql.VarChar, args.Cod_jornada)
+                .input('COD_JORNADA', sql.Int, args.Cod_jornada)
                 .input('DESCRIPCION_JORNADA', sql.VarChar, args.Descripcion_jornada)
                 .execute('SP_AGREGAR_JORNADA');
             con.close();
@@ -52,14 +52,14 @@ let insertJornada = async (request, response) => {
 let updateJornada = async (request, response) => {
     try {
         let args = JSON.parse(request.body.arg === undefined ? '{}' : request.body.arg);
-        let msg = validador.validarParametro(args, 'cadena', 'Cod_jornada', true);
+        let msg = validador.validarParametro(args, 'numero', 'Cod_jornada', true);
         msg += validador.validarParametro(args, 'cadena', 'Descripcion_jornada', true);
 
         if (msg == '') {
             let con = await sql.connect(global.config.ds_postgrado);
 
             let result = await con.request()
-                .input('COD_JORNADA', sql.VarChar, args.Cod_jornada)
+                .input('COD_JORNADA', sql.Int, args.Cod_jornada)
                 .input('DESCRIPCION_JORNADA', sql.VarChar, args.Descripcion_jornada)
                 .execute('SP_ACTUALIZAR_JORNADA');
             con.close();
@@ -75,13 +75,13 @@ let updateJornada = async (request, response) => {
 let deleteJornada = async (request, response) => {
     try {
         let args = JSON.parse(request.body.arg === undefined ? '{}' : request.body.arg);
-        let msg = validador.validarParametro(args, 'cadena', 'Cod_jornada', true);
+        let msg = validador.validarParametro(args, 'numero', 'Cod_jornada', true);
 
         if (msg == '') {
             let con = await sql.connect(global.config.ds_postgrado);
 
             let result = await con.request()
-                .input('COD_JORNADA', sql.VarChar, args.Cod_jornada)
+                .input('COD_JORNADA', sql.Int, args.Cod_jornada)
                 .execute('SP_ELIMINAR_JORNADA');
             con.close();
             response.json(reply.ok(true));
